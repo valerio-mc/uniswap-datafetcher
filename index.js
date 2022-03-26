@@ -16,7 +16,7 @@ async function main(){
     console.log("### Starting Uniswap-DataFetcher ###");
     let blockNumber = await provider.getBlockNumber();
     let poolInterface = new ethers.utils.Interface(IUniswapV3Pool.abi);
-    let qdays = 120; // aka quarter of a day --> 120 qdays equal to 30 days
+    let qdays = 360; // aka quarter of a day --> 120 qdays equal to 30 days
     let windowSize = 10000;
     let rawDataFrame = [];
     let header = ["blockNumber", "USDC", "wETH", "tick"];
@@ -54,7 +54,7 @@ async function main(){
     pbar.stop();
 
     let df = new dfd.DataFrame(rawDataFrame, {columns: header})
-    df.toCSV({ filePath: "wETH_USDC_pool.csv"});
+    df.toCSV({ filePath: "wETH_USDC_pool_3months.csv"});
     console.log(df.shape);
 }
 
