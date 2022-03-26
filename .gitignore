@@ -1,3 +1,3 @@
 node_modules
 /secrets.json
-/wETH_USDC_pool_3months.csv
+.DS_Store
