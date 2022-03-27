@@ -13,6 +13,7 @@
     "@uniswap/v3-periphery": "^1.4.0",
     "cli-progress": "^3.10.0",
     "danfojs-node": "^1.0.4",
-    "ethers": "^5.6.1"
+    "ethers": "^5.6.1",
+    "numjs": "^0.16.1"
   }
 }
