@@ -1,7 +1,6 @@
 const { ethers, BigNumber } = require("ethers");
 const cliProgress = require('cli-progress');
 const dfd = require("danfojs-node");
-const np = require("numjs");
 
 async function rawSwapFeed(poolAddress, provider, poolInterface, tokensName, nFrame, frameBlockSize){
     console.log("... Fetching raw swaps feed for pool (%s - %s): %s ... ", tokensName[0], tokensName[1], poolAddress);
@@ -15,7 +14,6 @@ async function rawSwapFeed(poolAddress, provider, poolInterface, tokensName, nFr
     pbar.start(nFrame, 0);
 
     for(let steps = nFrame; steps > 0; steps--){
-
         // fromBlock and toBlock are inclusive, removing the last block from toBlock to avoid fetching twice the last block's swaps
         let filter = {
             address: poolAddress,
@@ -48,8 +46,8 @@ async function rawSwapFeed(poolAddress, provider, poolInterface, tokensName, nFr
     // Using Danfo.js to format and export swap feed data
     let df = new dfd.DataFrame(rawDataFrame, {columns: ["blockNumber", tokensName[0], tokensName[1], "tick"]});
     console.log("... Extracted swaps:", df.shape[0], " ...");
-    console.log("... Exporting swaps feed @ ./wETH_USDC_pool_1month.csv");
-    df.toCSV({ filePath: "wETH_USDC_pool_1month.csv" });
+    console.log("... Exporting swaps feed @ ./raw_wETH_USDC_pool_1month.csv");
+    df.toCSV({ filePath: "raw_wETH_USDC_pool_1month.csv" });
 }
 
 

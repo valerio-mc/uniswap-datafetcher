@@ -2,8 +2,8 @@ const { ethers, BigNumber } = require("ethers");
 const secrets = require('./secrets.json');
 const IUniswapV3Pool = require("@uniswap/v3-core/artifacts/contracts/interfaces/IUniswapV3Pool.sol/IUniswapV3Pool.json");
 const dfd = require("danfojs-node");
-const np = require("numjs");
 const { rawSwapFeed } = require('./utils/rawSwapFeed');
+const { aggSwapFeed } = require("./utils/aggSwapFeed");
 
 const provider = new ethers.providers.JsonRpcProvider(secrets.urlPolygon);
 const wallet = new ethers.Wallet(secrets.keeper);
@@ -16,7 +16,9 @@ async function main(){
     console.log("### Running Uniswap-DataFetcher ###");
     let poolInterface = new ethers.utils.Interface(IUniswapV3Pool.abi);
 
-    rawSwapFeed(poolAddress, provider, poolInterface, ['USDC','wETH'], 3, 10000);
+    await rawSwapFeed(poolAddress, provider, poolInterface, ['USDC','wETH'], 120, 10000);
+    await aggSwapFeed(poolAddress, provider, poolInterface, ['USDC', 'wETH'], 15, 150);
+
 
 }
 
