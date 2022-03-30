@@ -17,8 +17,7 @@ async function main(){
     let poolInterface = new ethers.utils.Interface(IUniswapV3Pool.abi);
 
     await rawSwapFeed(poolAddress, provider, poolInterface, ['USDC','wETH'], 120, 10000);
-    await aggSwapFeed(poolAddress, provider, poolInterface, ['USDC', 'wETH'], 15, 150);
-
+    await aggSwapFeed(poolAddress, provider, poolInterface, ['USDC', 'wETH'], 12, 150);
 
 }
 
