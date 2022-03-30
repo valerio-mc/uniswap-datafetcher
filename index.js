@@ -5,7 +5,7 @@ const dfd = require("danfojs-node");
 const { rawSwapFeed } = require('./utils/rawSwapFeed');
 const { aggSwapFeed } = require("./utils/aggSwapFeed");
 
-const provider = new ethers.providers.JsonRpcProvider(secrets.urlPolygon);
+const provider = new ethers.providers.JsonRpcProvider(secrets.Alchemy_API_KEY);
 const wallet = new ethers.Wallet(secrets.keeper);
 const signer = wallet.connect(provider);
 
